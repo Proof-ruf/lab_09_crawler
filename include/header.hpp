@@ -121,10 +121,12 @@ public:
         }
     }
 
+    
     static GumboOutput *fromStrToNode(std::string &str) {
         GumboOutput *output = gumbo_parse(str.c_str());
         return output;
     }
+
 
     void getLinks(GumboNode *node, const HrefData &parent) {
         try {
@@ -158,6 +160,7 @@ public:
         catch (...) { return; }
     }
 
+
     void getImg(GumboNode *node) {
         try {
             if (node->type != GUMBO_NODE_ELEMENT) {
@@ -188,6 +191,7 @@ public:
         catch (...) { return; }
     }
 
+
     static std::string getPage(std::string url) {
         std::string page;
         if (getPort(url) == "80") {
@@ -195,6 +199,7 @@ public:
         } else { page = getHttps(url); }
         return page;
     }
+
 
     static std::string getHttp(std::string url) {
         try {
@@ -221,6 +226,8 @@ public:
             return "";
         }
     }
+
+
 
     static std::string getHttps(std::string &url) {
         std::string const host = getHost(url);
@@ -307,5 +314,6 @@ private:
     boost::mutex hrefMuter;
     boost::mutex imgMuter;
 };
+
 
 #endif // INCLUDE_HEADER_HPP_
